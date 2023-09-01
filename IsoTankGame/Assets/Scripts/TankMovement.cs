@@ -19,8 +19,8 @@ public class TankMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        lVelocity = Input.GetAxis("LeftTrigger") * movementSpeed;
-        rVelocity = Input.GetAxis("RightTrigger") * movementSpeed;
+        lVelocity = Input.GetAxis("LeftThrottle") * movementSpeed;
+        rVelocity = Input.GetAxis("RightThrottle") * movementSpeed;
 
         if (lVelocity != 0) {
             Rigidbody.AddRelativeTorque(new Vector3(0, lVelocity,0));
