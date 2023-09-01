@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ public class TurretController : MonoBehaviour
 {
     public GameObject Turret;
     public GameObject Gun;
+    public GameObject Barrel;
     public GameObject Muzzle;
     public GameObject Target;
 
@@ -19,13 +21,48 @@ public class TurretController : MonoBehaviour
     float turretAngle = 0;
     float gunPitch = 5 * Mathf.Deg2Rad;
     float gravity = -9.8f;
-    
+    Boolean canShoot = true;
     void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
     }
 
     void Update()
+    {
+       AnimateTurret();
+       Cannon();
+
+    }
+    void Cannon()
+    {
+        if (canShoot == true && Input.GetButton("Select"))
+        {
+            canShoot = false;
+            StartCoroutine(AnimateBarrelRecoil());
+            Invoke("Reload", 1);
+        }
+    }
+
+    void Reload()
+    {
+        canShoot = true;
+    }
+
+    IEnumerator AnimateBarrelRecoil()
+    {
+        Barrel.transform.localPosition = new Vector3(-0.125f, 0, 0);
+        for (int i = 0; i < 30; i++)
+        {
+            Barrel.transform.localPosition = new Vector3(Mathf.Lerp(Barrel.transform.localPosition.x,0,0.15f), 0, 0);
+            if (i == 29) 
+            {
+                Barrel.transform.localPosition = new Vector3(0, 0, 0);
+            } 
+            yield return new WaitForSeconds(1/30f);
+        }
+    }
+
+    void AnimateTurret()
     {
         muzzlePosition = Muzzle.transform.position - transform.position;
 

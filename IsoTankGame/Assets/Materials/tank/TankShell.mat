@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: LeftTankTread
+  m_Name: TankShell
   m_Shader: {fileID: 4800000, guid: 650dd9526735d5b46b79224bc6e94025, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -22,8 +22,8 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: adbf30573431a4a428bf6561dd44d837, type: 3}
-        m_Scale: {x: 1, y: 0.05}
+        m_Texture: {fileID: 2800000, guid: 4a3242962fc01474cb5879fcb46ab46b, type: 3}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
@@ -46,8 +46,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: adbf30573431a4a428bf6561dd44d837, type: 3}
-        m_Scale: {x: 1, y: 0.05}
+        m_Texture: {fileID: 2800000, guid: 4a3242962fc01474cb5879fcb46ab46b, type: 3}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
@@ -66,7 +66,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture:
-        m_Texture: {fileID: 2800000, guid: adbf30573431a4a428bf6561dd44d837, type: 3}
+        m_Texture: {fileID: 2800000, guid: 83a7f42980645f549880a05a3d7b85e9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2D:
@@ -145,10 +145,10 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Inline_Color: {r: 0.9137255, g: 0.87058824, b: 0.8235294, a: 1}
     - _LineColor: {r: 0.14901957, g: 0.094117604, b: 0.094117604, a: 1}
-    - _Offset: {r: 0, g: 0.15, b: 0, a: 0}
+    - _Offset: {r: 0, g: 0, b: 0, a: 0}
     - _Outline_Color: {r: 0.14901961, g: 0.08627451, b: 0.08627451, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _Tiling: {r: 1, g: 0.05, b: 0, a: 0}
+    - _Tiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &5098227266892469897
 MonoBehaviour:
