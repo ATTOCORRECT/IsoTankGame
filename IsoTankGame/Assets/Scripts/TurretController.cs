@@ -10,6 +10,7 @@ public class TurretController : MonoBehaviour
     public GameObject Barrel;
     public GameObject Muzzle;
     public GameObject Target;
+    public GameObject Shell;
 
     public float projectileVelocity;
     public float rotationSpeed;
@@ -31,16 +32,24 @@ public class TurretController : MonoBehaviour
     {
        AnimateTurret();
        Cannon();
-
     }
+
     void Cannon()
     {
         if (canShoot == true && Input.GetButton("Select"))
         {
             canShoot = false;
+            Shoot();
             StartCoroutine(AnimateBarrelRecoil());
             Invoke("Reload", 1);
         }
+    }
+
+    void Shoot()
+    {
+        Vector3 velocityVector = new Vector3(Mathf.Cos(turretAngle) * Mathf.Cos(gunPitch), Mathf.Sin(gunPitch), Mathf.Sin(turretAngle) * Mathf.Cos(gunPitch));
+        GameObject CurrentShell = Instantiate(Shell, Muzzle.transform.position, Muzzle.transform.rotation);
+        CurrentShell.GetComponent<Rigidbody>().AddForce(velocityVector * projectileVelocity, ForceMode.Impulse);
     }
 
     void Reload()
@@ -67,7 +76,7 @@ public class TurretController : MonoBehaviour
         muzzlePosition = Muzzle.transform.position - transform.position;
 
         turretAngle = (turretAngle - Input.GetAxis("Horizontal") * rotationSpeed * Mathf.Deg2Rad) % (2 * Mathf.PI);
-        gunPitch = Mathf.Clamp(gunPitch + Input.GetAxis("Vertical") * rotationSpeed * Mathf.Deg2Rad, -20 * Mathf.Deg2Rad, 30 * Mathf.Deg2Rad);;
+        gunPitch = Mathf.Clamp(gunPitch + Input.GetAxis("Vertical") * rotationSpeed * 0.5f * Mathf.Deg2Rad, -20 * Mathf.Deg2Rad, 5 * Mathf.Deg2Rad);;
 
         float finalTime = ProjectileTimeAtGround();
         float targetRadius = ProjectileTimetoDistance(finalTime);
