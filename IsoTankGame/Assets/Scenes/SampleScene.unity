@@ -2077,7 +2077,7 @@ MonoBehaviour:
   Muzzle: {fileID: 379954351}
   Target: {fileID: 867145380}
   Shell: {fileID: 6112433437278061832, guid: 3196649eaa7943c4582b61117a507009, type: 3}
-  projectileVelocity: 12
+  projectileVelocity: 8
   rotationSpeed: 0.2
 --- !u!120 &1072799974
 LineRenderer:

@@ -34,6 +34,12 @@ public class TurretController : MonoBehaviour
        Cannon();
     }
 
+    void FixedUpdate()
+    {
+        turretAngle = (turretAngle - Input.GetAxis("Horizontal") * rotationSpeed * Mathf.Deg2Rad) % (2 * Mathf.PI);
+        gunPitch = Mathf.Clamp(gunPitch + Input.GetAxis("Vertical") * rotationSpeed * Mathf.Deg2Rad, -20 * Mathf.Deg2Rad, 25 * Mathf.Deg2Rad);
+    }
+
     void Cannon()
     {
         if (canShoot == true && Input.GetButton("Select"))
@@ -41,15 +47,16 @@ public class TurretController : MonoBehaviour
             canShoot = false;
             Shoot();
             StartCoroutine(AnimateBarrelRecoil());
-            Invoke("Reload", 1);
+            Invoke("Reload", 1.2f);
         }
     }
 
     void Shoot()
     {
-        Vector3 velocityVector = new Vector3(Mathf.Cos(turretAngle) * Mathf.Cos(gunPitch), Mathf.Sin(gunPitch), Mathf.Sin(turretAngle) * Mathf.Cos(gunPitch));
+        Vector3 velocityVector = new Vector3(Mathf.Cos(turretAngle) * Mathf.Cos(gunPitch), Mathf.Sin(gunPitch), Mathf.Sin(turretAngle) * Mathf.Cos(gunPitch)) * projectileVelocity;
+        velocityVector += GetComponent<Rigidbody>().velocity;
         GameObject CurrentShell = Instantiate(Shell, Muzzle.transform.position, Muzzle.transform.rotation);
-        CurrentShell.GetComponent<Rigidbody>().AddForce(velocityVector * projectileVelocity, ForceMode.Impulse);
+        CurrentShell.GetComponent<Rigidbody>().AddForce(velocityVector, ForceMode.Impulse);
     }
 
     void Reload()
@@ -74,9 +81,6 @@ public class TurretController : MonoBehaviour
     void AnimateTurret()
     {
         muzzlePosition = Muzzle.transform.position - transform.position;
-
-        turretAngle = (turretAngle - Input.GetAxis("Horizontal") * rotationSpeed * Mathf.Deg2Rad) % (2 * Mathf.PI);
-        gunPitch = Mathf.Clamp(gunPitch + Input.GetAxis("Vertical") * rotationSpeed * 0.5f * Mathf.Deg2Rad, -20 * Mathf.Deg2Rad, 5 * Mathf.Deg2Rad);;
 
         float finalTime = ProjectileTimeAtGround();
         float targetRadius = ProjectileTimetoDistance(finalTime);
