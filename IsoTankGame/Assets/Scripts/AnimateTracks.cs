@@ -7,8 +7,6 @@ public class AnimateTracks : MonoBehaviour
     public Material LeftTankTreadMaterial;
     public Material RightTankTreadMaterial;
     TankMovement tankMovement;
-    public GameObject Tank;
-
     float rightTankTreadFrame = 0;
     float leftTankTreadFrame = 0;
     float oldRightTankTreadFrame = 0;
@@ -16,6 +14,7 @@ public class AnimateTracks : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameObject Tank = gameObject;
         tankMovement = Tank.GetComponent<TankMovement>();
 
         RightTankTreadMaterial.mainTextureOffset = (new Vector2(0,0));
