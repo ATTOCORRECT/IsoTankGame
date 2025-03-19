@@ -2,10 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 public class AnimateTracks : MonoBehaviour
 {
-    public Material LeftTankTreadMaterial;
-    public Material RightTankTreadMaterial;
+    Material LeftTankTreadMaterial;
+    Material RightTankTreadMaterial;
     TankMovement tankMovement;
     float rightTankTreadFrame = 0;
     float leftTankTreadFrame = 0;
