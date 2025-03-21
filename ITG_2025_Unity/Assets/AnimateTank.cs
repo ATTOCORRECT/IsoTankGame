@@ -9,9 +9,6 @@ public class AnimateTank : MonoBehaviour
     FloorHeightDetector frontLeft, frontRight, midLeft, midRight ,backLeft, backRight;
 
     [SerializeField]
-    TrackVelocityDetector leftVelocitySensor, rightVelocitySensor;
-
-    [SerializeField]
     Transform Hull, leftTrack, rightTrack;
 
     float bodyWidth = 2.5f;
