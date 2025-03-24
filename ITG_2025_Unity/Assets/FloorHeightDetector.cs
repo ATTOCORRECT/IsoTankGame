@@ -6,6 +6,12 @@ using UnityEngine.UIElements;
 
 public class FloorHeightDetector : MonoBehaviour
 {
+    LayerMask layerMask;
+
+    private void Start()
+    {
+        layerMask = LayerMask.GetMask("Ground");
+    }
 
 
     public float GetHeight()
@@ -24,14 +30,15 @@ public class FloorHeightDetector : MonoBehaviour
 
         RaycastHit hit;
         // Does the ray intersect any objects excluding the player layer
-        if (Physics.Raycast(position, transform.TransformDirection(Vector3.down), out hit, 2))
+        if (Physics.Raycast(position, transform.TransformDirection(Vector3.down), out hit, 4, layerMask))
         {
             Debug.DrawRay(position, transform.TransformDirection(Vector3.down) * hit.distance, Color.red);
-            height = hit.distance - 1;
+            height = hit.distance - 2;
         }
         else
         {
-            height = 1;
+            height = 2;
+            Debug.Log("NO GROUND!");
         }
         return height;
     }

@@ -21,8 +21,6 @@ public class TrackVelocityDetector : MonoBehaviour
         forwardSpeed = Vector3.Dot(velocity, transform.forward) / Time.fixedDeltaTime;
 
         lastPosition = transform.position;
-
-        Debug.Log(forwardSpeed);
     }
 
     public float getForwardSpeed()

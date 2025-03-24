@@ -19,7 +19,7 @@ public class AnimateTank : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        height  = new SecondOrderDynamics(0.25f, 0.5f, 2, Vector3.zero);
+        height  = new SecondOrderDynamics(0.5f, 1f, 2, Vector3.zero);
         aPiRo   = new SecondOrderDynamics(0.25f, 0.5f, 2, Vector3.zero);
         aPiLPiR = new SecondOrderDynamics(0.25f, 0.5f, 2, Vector3.zero);
     }
@@ -38,8 +38,8 @@ public class AnimateTank : MonoBehaviour
 
         float pitchLeft, pitchRight;
 
-        pitchLeft = Mathf.Atan2(heightFrontLeft - heightBackLeft, bodyWidth) * Mathf.Rad2Deg;
-        pitchRight = Mathf.Atan2(heightFrontRight - heightBackRight, bodyWidth) * Mathf.Rad2Deg;
+        pitchLeft = Mathf.Atan2(heightFrontLeft - heightBackLeft, trackLength) * Mathf.Rad2Deg;
+        pitchRight = Mathf.Atan2(heightFrontRight - heightBackRight, trackLength) * Mathf.Rad2Deg;
 
         float heightLeft, heightRight;
 
@@ -50,11 +50,11 @@ public class AnimateTank : MonoBehaviour
         {
             if (heightFrontLeft < heightBackLeft)
             {
-                pitchLeft = Mathf.Atan2(heightFrontLeft - heightMidLeft, bodyWidth / 2) * Mathf.Rad2Deg;
+                pitchLeft = Mathf.Atan2(heightFrontLeft - heightMidLeft, trackLength / 2) * Mathf.Rad2Deg;
             }
             else if (heightFrontLeft > heightBackLeft)
             {
-                pitchLeft = Mathf.Atan2(heightMidLeft - heightBackLeft, bodyWidth / 2) * Mathf.Rad2Deg;
+                pitchLeft = Mathf.Atan2(heightMidLeft - heightBackLeft, trackLength / 2) * Mathf.Rad2Deg;
             }
 
             heightLeft = heightMidLeft;
@@ -64,11 +64,11 @@ public class AnimateTank : MonoBehaviour
         {
             if (heightFrontRight < heightBackRight)
             {
-                pitchRight = Mathf.Atan2(heightFrontRight - heightMidRight, bodyWidth / 2) * Mathf.Rad2Deg;
+                pitchRight = Mathf.Atan2(heightFrontRight - heightMidRight, trackLength / 2) * Mathf.Rad2Deg;
             }
             else if (heightFrontRight > heightBackRight)
             {
-                pitchRight = Mathf.Atan2(heightMidRight - heightBackRight, bodyWidth / 2) * Mathf.Rad2Deg;
+                pitchRight = Mathf.Atan2(heightMidRight - heightBackRight, trackLength / 2) * Mathf.Rad2Deg;
             }
 
             heightRight = heightMidRight;
