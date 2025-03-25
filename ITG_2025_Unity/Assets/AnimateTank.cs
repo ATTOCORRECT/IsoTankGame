@@ -19,9 +19,9 @@ public class AnimateTank : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        height  = new SecondOrderDynamics(0.5f, 1f, 2, Vector3.zero);
-        aPiRo   = new SecondOrderDynamics(0.25f, 0.5f, 2, Vector3.zero);
-        aPiLPiR = new SecondOrderDynamics(0.25f, 0.5f, 2, Vector3.zero);
+        height  = new SecondOrderDynamics(3f, 1f, 2, Vector3.zero);
+        aPiRo   = new SecondOrderDynamics(1.5f, 0.5f, 2, Vector3.zero);
+        aPiLPiR = new SecondOrderDynamics(1.5f, 0.5f, 2, Vector3.zero);
     }
 
     // Update is called once per frame
@@ -80,13 +80,13 @@ public class AnimateTank : MonoBehaviour
 
         Vector3 heightT = Vector3.down * (heightLeft + heightRight) / 2;
 
-        Vector3 aPiRoOut = aPiRo.update(new Vector3(pitch, 0, roll));
+        Vector3 aPiRoOut = aPiRo.update(new Vector3(pitch, 0, roll), Time.deltaTime);
         Hull.localRotation = Quaternion.Euler(aPiRoOut.x, 0, aPiRoOut.z);
 
-        Vector3 aPiLPiROut = aPiLPiR.update(new Vector3(pitchLeft, pitchRight, 0));
+        Vector3 aPiLPiROut = aPiLPiR.update(new Vector3(pitchLeft, pitchRight, 0), Time.deltaTime);
         leftTrack.localRotation = Quaternion.Euler(aPiLPiROut.x - aPiRoOut.x, 0, 0);
         rightTrack.localRotation = Quaternion.Euler(aPiLPiROut.y - aPiRoOut.x, 0, 0);
 
-        Hull.localPosition = height.update(heightT);
+        Hull.localPosition = height.update(heightT, Time.deltaTime);
     }
 }

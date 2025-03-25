@@ -25,14 +25,14 @@ public class SecondOrderDynamics
         yd = Vector3.zero;
     }
 
-    public Vector3 update(Vector3 target)
+    public Vector3 update(Vector3 target, float delta)
     {
         //black magic
         k1 = z / (Mathf.PI * f);
         k2 = 1 / ((2 * Mathf.PI * f) * (2 * Mathf.PI * f));
         k3 = r * z / (2 * Mathf.PI * f);
 
-        float T = Time.fixedDeltaTime;
+        float T = delta;
         Vector3 x = target;
         Vector3 xd = (x - xp) / T;
         xp = x;
