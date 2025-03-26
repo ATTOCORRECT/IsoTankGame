@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    Vector3 inputMoveDirection = Vector3.forward;
-    float inputMoveSpeed;
+    Vector3 targetMoveDirection = Vector3.zero;
+    Vector3 moveDirection = Vector3.forward;
+    float inputMagnitude = 0;
+
 
     float speed = 8;
-    float angularSpeed = 64;
+    float angularSpeed = 192;
 
-    SecondOrderDynamics trackSpeed;
+    SecondOrderDynamics dynamics;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        dynamics = new SecondOrderDynamics(3f, 1f, 0, Vector3.zero);
     }
 
-    // Update is called once per frame
+    // Update is called once per frame  
     void Update()
     {
         UpdateInput();
@@ -26,46 +28,19 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 Velocity = inputMoveDirection * speed * inputMoveSpeed;
-        transform.position += Velocity * Time.fixedDeltaTime;
-        transform.rotation = Quaternion.LookRotation(inputMoveDirection, Vector3.up);
-    }
+        float turnAngle = Vector3.SignedAngle(moveDirection, targetMoveDirection, Vector3.up);
 
-    void UpdateInput()
-    {
-        float inputLeft = 0;
-        float inputRight = 0;
 
-        inputLeft = Input.GetAxis("Left Track"); // For controller triggers
-        inputRight = Input.GetAxis("Right Track");
+        turnAngle = Mathf.Clamp(turnAngle, -angularSpeed * Time.fixedDeltaTime, angularSpeed * Time.fixedDeltaTime);
 
-        //if (Input.GetKey(KeyCode.W))
-        //{
-        //    //inputLeft = 1;
-        //    //inputRight = 1;
-        //}
-        //if (Input.GetKey(KeyCode.S))
-        //{
+        //turnAngle = dynamics.update(new Vector3(turnAngle, 0, 0), Time.fixedDeltaTime).x;
 
-        //}
-        //if (Input.GetKey(KeyCode.A))
-        //{
-        //    //inputLeft -= 1;
-        //    inputLeft += 1;
-        //}
-        //if (Input.GetKey(KeyCode.D))
-        //{
-        //    inputRight += 1;
-        //    //inputRight -= 1;
-        //}
+        Debug.Log(turnAngle);
 
-        Vector3 inputSpeed = new Vector3(Throttle(inputLeft, inputRight), Throttle(inputRight, inputLeft), 0);
-        float inputSpeedLeft  = inputSpeed.x;
-        float inputSpeedRight = inputSpeed.y;
+        moveDirection = (Quaternion.AngleAxis(turnAngle, Vector3.up) * moveDirection).normalized;
 
-        inputMoveSpeed = (inputSpeedLeft + inputSpeedRight) / 2;
 
-        if (inputMoveSpeed > 0.5f)
+        if (inputMagnitude > 0.5f)
         {
             speed = Mathf.Lerp(speed, 16, 0.4f * Time.deltaTime);
         }
@@ -74,11 +49,31 @@ public class PlayerController : MonoBehaviour
             speed = Mathf.Lerp(speed, 8, 1.6f * Time.deltaTime);
         }
 
-        //Debug.Log(speed);
 
-        float inputTorque = inputSpeedLeft - inputSpeedRight;
+        Vector3 Velocity = moveDirection * inputMagnitude * speed;
+        transform.position += Velocity * Time.fixedDeltaTime;
+        transform.rotation = Quaternion.LookRotation(moveDirection, Vector3.up);
+    }
 
-        inputMoveDirection = (Quaternion.AngleAxis(inputTorque * angularSpeed * Time.deltaTime, Vector3.up) * inputMoveDirection).normalized;
+    void UpdateInput()
+    {
+        Vector3 inputDirection = Vector3.zero;
+
+        inputDirection.x = Input.GetAxis("Horizontal");
+        inputDirection.z = Input.GetAxis("Vertical");
+
+        inputDirection.Normalize();
+
+        inputMagnitude = inputDirection.magnitude;
+
+        if (inputMagnitude == 0)
+        {
+            return;
+        }
+
+        inputDirection = (Quaternion.AngleAxis(-45, Vector3.up) * inputDirection).normalized;
+
+        targetMoveDirection = inputDirection;
     }
 
     float Throttle(float a, float b)

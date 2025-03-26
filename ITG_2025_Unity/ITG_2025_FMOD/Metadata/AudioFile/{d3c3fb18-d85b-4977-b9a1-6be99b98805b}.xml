@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{d3c3fb18-d85b-4977-b9a1-6be99b98805b}">
+		<property name="assetPath">
+			<value>piuw.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.47999999999999998</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{fbe41c23-ea98-4c25-a3bc-01fd38ac425a}</destination>
+		</relationship>
+	</object>
+</objects>
