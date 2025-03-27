@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
 
         //turnAngle = dynamics.update(new Vector3(turnAngle, 0, 0), Time.fixedDeltaTime).x;
 
-        Debug.Log(turnAngle);
+        //  Debug.Log(turnAngle);
 
         moveDirection = (Quaternion.AngleAxis(turnAngle, Vector3.up) * moveDirection).normalized;
 
