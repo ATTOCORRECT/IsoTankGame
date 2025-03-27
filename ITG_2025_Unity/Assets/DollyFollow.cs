@@ -16,6 +16,7 @@ public class DollyFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = target.transform.position;
+        Vector3 newPosition = new Vector3(target.position.x, 0, target.position.z);
+        transform.position = newPosition;
     }
 }
