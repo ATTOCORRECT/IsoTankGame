@@ -28,16 +28,13 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float turnAngle = Vector3.SignedAngle(moveDirection, targetMoveDirection, Vector3.up);
-
-
-        turnAngle = Mathf.Clamp(turnAngle, -angularSpeed * Time.fixedDeltaTime, angularSpeed * Time.fixedDeltaTime);
+        
 
         //turnAngle = dynamics.update(new Vector3(turnAngle, 0, 0), Time.fixedDeltaTime).x;
 
         //  Debug.Log(turnAngle);
 
-        moveDirection = (Quaternion.AngleAxis(turnAngle, Vector3.up) * moveDirection).normalized;
+        
 
 
         if (inputMagnitude > 0.5f)
@@ -50,9 +47,24 @@ public class PlayerController : MonoBehaviour
         }
 
 
+        
+
+        if (inputMagnitude > 0)
+        {
+            float turnAngle = Vector3.SignedAngle(moveDirection, targetMoveDirection, Vector3.up);
+
+            turnAngle = Mathf.Clamp(turnAngle, -angularSpeed * Time.fixedDeltaTime, angularSpeed * Time.fixedDeltaTime);
+
+            moveDirection = (Quaternion.AngleAxis(turnAngle, Vector3.up) * moveDirection).normalized;
+
+
+            transform.rotation = Quaternion.LookRotation(moveDirection, Vector3.up);
+        }
+
         Vector3 Velocity = moveDirection * inputMagnitude * speed;
         transform.position += Velocity * Time.fixedDeltaTime;
-        transform.rotation = Quaternion.LookRotation(moveDirection, Vector3.up);
+
+        Utils.drawDebugPoint(transform.position + targetMoveDirection * 5, Color.cyan);
     }
 
     void UpdateInput()
@@ -62,16 +74,11 @@ public class PlayerController : MonoBehaviour
         inputDirection.x = Input.GetAxis("Horizontal");
         inputDirection.z = Input.GetAxis("Vertical");
 
-        inputDirection.Normalize();
+        inputDirection = Vector3.ClampMagnitude(inputDirection, 1);
 
         inputMagnitude = inputDirection.magnitude;
 
-        if (inputMagnitude == 0)
-        {
-            return;
-        }
-
-        inputDirection = (Quaternion.AngleAxis(-45, Vector3.up) * inputDirection).normalized;
+        inputDirection = (Quaternion.AngleAxis(-45, Vector3.up) * inputDirection);
 
         targetMoveDirection = inputDirection;
     }

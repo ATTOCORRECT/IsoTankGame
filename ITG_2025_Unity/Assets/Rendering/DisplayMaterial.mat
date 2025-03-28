@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_New Shader Graph
+  m_Name: DisplayMaterial
   m_Shader: {fileID: -6465566751694194690, guid: d6fb5b742f450f645a2aa584e92e0c35,
     type: 3}
   m_Parent: {fileID: 0}

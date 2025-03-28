@@ -3670,7 +3670,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8426727509610035857}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18a109e7d5804414aa5701b7468d4811, type: 3}
+  m_Script: {fileID: 11500000, guid: 5bba4af49326f2f4cbb96f931c7eaa2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   frontLeft: {fileID: 433548151046596512}
@@ -3691,7 +3691,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8426727509610035857}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b390636f306f2ff4e80124826e95f9fc, type: 3}
+  m_Script: {fileID: 11500000, guid: 8c45f2b82bb1f2b4493b3fae2ccd8998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   LeftTankTreadMaterial: {fileID: 2100000, guid: e5de6e992c3d8c748b411e89f3d67485,
