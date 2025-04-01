@@ -560,6 +560,36 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "16743477cbdd4795b38cd44b22639b6d",
+    "m_Id": 1962343792,
+    "m_DisplayName": "Strength",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "_Strength",
+    "m_StageCapability": 2,
+    "m_Value": 128.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "16be28e3cd024e3b9848edb54812aeb3",
+    "m_Id": 1962343792,
+    "m_DisplayName": "Strength",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "_Strength",
+    "m_StageCapability": 2,
+    "m_Value": 1024.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
     "m_ObjectId": "1700a6b3201b4debbb05b28a36b9779c",
     "m_Id": 0,
@@ -700,6 +730,9 @@
             "m_Id": "0cd583bf548f45a29f2b8dae876a891c"
         },
         {
+            "m_Id": "16be28e3cd024e3b9848edb54812aeb3"
+        },
+        {
             "m_Id": "ed2c9da7b2534dae90788e37951e5704"
         }
     ],
@@ -714,11 +747,13 @@
     "m_SerializedSubGraph": "{\n    \"subGraph\": {\n        \"fileID\": -5475051401550479605,\n        \"guid\": \"caaa1da5e70bd14499a250068005fbf4\",\n        \"type\": 3\n    }\n}",
     "m_PropertyGuids": [
         "38d7f0e0-b3fd-4f8c-b65c-5d8590962adc",
-        "9ae83377-d10f-4b34-ac3a-29afe1583f3e"
+        "9ae83377-d10f-4b34-ac3a-29afe1583f3e",
+        "1662dac9-477d-428f-a7ef-0218638f1938"
     ],
     "m_PropertyIds": [
         774670651,
-        1087012917
+        1087012917,
+        1962343792
     ],
     "m_Dropdowns": [],
     "m_DropdownSelectedEntries": []
@@ -2492,6 +2527,9 @@
             "m_Id": "f35883516d0e488583bf9c7346b27871"
         },
         {
+            "m_Id": "16743477cbdd4795b38cd44b22639b6d"
+        },
+        {
             "m_Id": "f46d8e7d9c484d21b58e1c1fab9ded9d"
         }
     ],
@@ -2506,11 +2544,13 @@
     "m_SerializedSubGraph": "{\n    \"subGraph\": {\n        \"fileID\": -5475051401550479605,\n        \"guid\": \"caaa1da5e70bd14499a250068005fbf4\",\n        \"type\": 3\n    }\n}",
     "m_PropertyGuids": [
         "38d7f0e0-b3fd-4f8c-b65c-5d8590962adc",
-        "9ae83377-d10f-4b34-ac3a-29afe1583f3e"
+        "9ae83377-d10f-4b34-ac3a-29afe1583f3e",
+        "1662dac9-477d-428f-a7ef-0218638f1938"
     ],
     "m_PropertyIds": [
         774670651,
-        1087012917
+        1087012917,
+        1962343792
     ],
     "m_Dropdowns": [],
     "m_DropdownSelectedEntries": []
@@ -3044,7 +3084,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "_Side",
     "m_StageCapability": 2,
-    "m_Value": 1.0,
+    "m_Value": -1.0,
     "m_DefaultValue": 0.0,
     "m_Labels": []
 }
